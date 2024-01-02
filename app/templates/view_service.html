@@ -1,0 +1,25 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-12 col-lg-6 mb-4 ms-5 mb-xl-0">
+	<h3 class="text-light m-4 fw-medium">Service List</h3>
+	<div class="list-group-item list-group-item-action d-flex align-items-center cursor-pointer">
+		
+		<div class="w-100">
+			{% for i in service %}
+			<div class="d-flex justify-content-between m-4">
+				<div class="user-info">
+					<h3 class="m-2">{{i}}</h3>
+					
+					
+				</div>
+				<div class="add-btn">
+					<a href="{% url 'delete_service' pk=i.pk %}"><input type="submit" class="btn btn-primary btn-m" value="Delete"></a>
+					<a href="{% url 'update_service' pk=i.pk %}"><input type="submit" class="btn btn-primary btn-m" value="update"></a>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}

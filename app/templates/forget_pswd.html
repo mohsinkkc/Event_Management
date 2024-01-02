@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="rent-venue-application">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="heading-text">
+                        <h4>Forget password</h4>
+                        {% if msg %}
+                        <p style="color: red;">{{msg}}</p>
+                        {% endif %}
+                    </div>
+                    <div class="contact-form">
+                        <form id="contact" action="{% url 'forget_pswd' %}" method="post">
+                          {% csrf_token %} 
+                          <div class="row">
+                           
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Enter Your Email*" required="">
+                              </fieldset>
+                            </div>
+                            
+                           
+                      
+                            <div class="col-lg-6 mt-4 " style="margin-left: 150px;">
+                              <fieldset>
+                                
+                                <input type="submit" style="padding-bottom: 50px;" value="Get OTP" id="form-submit" class="main-dark-button" >
+                              </fieldset>
+                            </div>
+                            
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- *** Subscribe *** -->
+    <div class="subscribe">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4>Subscribe Our Newsletter:</h4>
+                </div>
+                <div class="col-lg-8">
+                    <form id="subscribe" action="" method="get">
+                        <div class="row">
+                          <div class="col-lg-9">
+                            <fieldset>
+                              <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-3">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-dark-button">Submit</button>
+                            </fieldset>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<section class="h-100" style="background-color: #eee;">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+      <form action="{% url 'cart' %}" method="post"> 
+        {% csrf_token %}
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+          <div>
+            <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
+                  class="fas fa-angle-down mt-1"></i></a></p>
+          </div>
+        </div>
+        {% for i in cart %}
+        <div class="card rounded-3 mb-4">
+          <div class="card-body p-4">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-md-2 col-lg-2 col-xl-2">
+                <img
+                  src="{{i.event.image.url}}"
+                  class="img-fluid rounded-3" alt="Cotton T-shirt">
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-3">
+                <p class="lead fw-normal mb-2">{{i.event.sub_category}}</p>
+                <p><span class="text-muted">location: </span>{{i.event.location}}<br>
+                 <span class="text-muted">Date: </span>{{i.event.date}}</p>
+              </div>
+              <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                <button class="btn btn-link px-2"
+                  onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                  <i class="fa fa-minus"></i>
+                </button>
+
+                <input id="form1" min="1" max="7" name="quantity" value="1" type="number"
+                  class="form-control form-control-sm" />
+
+                <button class="btn btn-link px-2"
+                  onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                  <i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                <h5 class="mb-0">₹{{i.event.price}}.00</h5>
+              </div>
+              <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                <a href="{% url 'delete_cart' pk=i.pk %}" class="text-danger"><i class="fa fa-trash fa-lg"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <div class="d-flex justify-content-between p-2 mb-2" style="background-color: #e1f5fe;">
+                  <h5 class="fw-bold mb-0">Total:</h5>
+                  <h5 class="fw-bold mb-0">₹{{net_price}}</h5>
+                </div>
+
+       
+        <div class="card">
+          <div class="card-body">
+            <form method="post">
+              <input type="hidden" id="net_price" name="amount" value="{{net_price}}">
+              <button type="button" class="btn btn-warning btn-block btn-lg" id="checkout-button">Proceed to Pay</button>
+           
+          </form>
+            
+
+          </div>
+        </div>
+</form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  var stripe=Stripe('pk_test_51OU2SwSHWhI1XtjG5VjTbEqm6xuWg1M050ktejwezoPOPY5niKg9svRFiVrLMDkDVwqh4qkILYLkvEUGdAsdiBfZ00wq2cv1fG');
+
+  var checkoutButton=document.getElementById('checkout-button');
+
+  checkoutButton.addEventListener('click',function(){
+    fetch('/create-checkout-session/',{
+      method:'POST',
+      headers:{
+        'Accept':'application/json',
+        'X-Requested-With':'XMLHttpRequest',
+      },
+      body:JSON.stringify({'post_data':'{{net_price}}'})
+    })
+  .then(function(response){
+    return response.json();
+  })
+  .then(function(session){
+    return stripe.redirectToCheckout({sessionId:session.id});
+  })
+  .then(function(result){
+    if(result.error){
+      alert(result.error.message);
+    }
+  })
+  .catch(function(error){
+    console.error('Error:',error);
+  });
+  });
+</script>
+
+
+
+
+{% endblock %}

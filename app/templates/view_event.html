@@ -1,0 +1,43 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+		{% for i in event %}
+<div class="col-md-4 col-12 col-xl-3 mb-4  m-5">
+	<div class="card h-100 mt-3">
+		<div class="card-header flex-grow-2 ">
+			<div class="d-flex">
+				<div class="avatar flex-shrink-0 me-3">
+					<img src="{{i.image.url}}" alt="User" class="rounded-circle">
+				</div>
+				<div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-1">
+					<div class="me-2">
+						<h5 class="mb-0">{{i.service}}</h5>
+						<small class="text-muted">{{i.hall_name}}</small>
+						<small class="text-muted">{{i.date}}</small>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<img class="img-fluid" src="{{i.image.url}}" alt="Card image cap">
+		
+		<div class="card-body">
+			<h3> {{i.sub_category}}</h3>
+			<p class="text-truncate">{{i.desc }}</p>
+			
+			<div class="d-flex align-items-center justify-content-between">
+				<div class="card-actions">
+					
+					<div class="d-flex my-3">
+						<a href="{% url 'delete_event' pk=i.pk %}" class="btn btn-primary me-5 ms-auto" role="button">Delete</a>
+						<a href="{% url 'update_event' pk=i.pk %}" class="btn btn-primary ms-auto" role="button">Update</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		{% endfor %}
+</div>
+{% endblock %}

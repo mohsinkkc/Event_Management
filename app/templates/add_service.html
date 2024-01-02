@@ -1,0 +1,27 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block content %}
+<form action="{% url 'add_service' %}" method="post">
+	{% csrf_token %}
+  				<div class="col-md-6 mt-5 ms-5">
+                  <div class="card mb-4">
+                    <h5 class="card-header">Add Service</h5>
+                    <div class="card-body">
+                      <div class="form-floating">
+                        <input
+                          type="text" name="category"
+                          class="form-control"
+                          id="floatingInput"
+                          placeholder="{{request.session.name}}"
+                          aria-describedby="floatingInputHelp" />
+                        <label for="floatingInput">Name</label>
+                        <div id="floatingInputHelp" class="form-text">
+                          <input type="submit" class="btn btn-primary me-2" value="Submit">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+</form>
+
+{% endblock %}

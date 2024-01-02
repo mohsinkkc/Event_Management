@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <!-- ***** About Us Page ***** -->
+    <div class="page-heading-rent-venue">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Are You Looking For A Venue?</h2>
+                    <span>Check out our venues, pick your choice and fill the reservation application.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rent-venue-tabs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row" id="tabs">
+                        <div class="col-lg-12">
+                            <div class="heading-tabs">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <ul>
+                                          <li><a href='#tabs-1'>Kankaria Hall</a></li>
+                                          <li><a href='#tabs-2'>Lalji Parimal Hall</a></a></li>
+                                          <li><a href='#tabs-3'>GMDC Hall</a></a></li>
+                                        </ul>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <section class='tabs-content'>
+                                <article id='tabs-1'>
+                                    <div class="row">
+                                        <div class="col-lg-9">
+                                            <div class="right-content">
+                                                <h4>Kankaria Hall</h4>
+                                                <p>Soak your senses in the vibrant beauty of Kankaria, Ahmedabad, a welcoming venue that houses gorgeous Kankaria halls to celebrate your special days in style and splendor. Located near the ancient Kankaria Lake, this venue is 32 minutes away from Ahmedabad Domestic Airport. It is your go-to place for weddings, receptions and large gatherings.
+The Kankaria halls here leave you entranced. Tastefully done-up in stunning lights, spectacular decor and regal vibes, they certainly make for a picturesque setting to your timeless pictures. Kankaria Hall, Kankaria, Ahmedabad offers in-house decor services along with premier hospitality. The skilled decorators give a contemporary touch to your event and create a soothing ambiance at the venue while the spacious Kankaria halls are well-maintained and can liven up the spirit of any event or party.
+Kankaria Hall also gives you the freedom to hire a catering service from outside, so you can put favored cuisines on the event menu. Ticking all the right boxes, this venue gives you every reason to opt for it. Kankaria, Ahmedabad is a gem of a place and must be on your cards.</p>
+                                                <ul class="list">
+                                                    <li>Kankaria Hall</li>
+                                                    
+                                                    <li>860 Guests</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <img src="{{i.}}">
+                                    </div>
+                                </article>                            
+                                <article id='tabs-2'>
+                                    <div class="row">
+                                        <div class="col-lg-9">
+                                            <div class="right-content">
+                                                <h4>Lalji Parimal Hall</h4>
+                                                <p> Elegance meets magnificence at Late Laljibhai Community Hall, Ahmedabad. Home to a wedding lawn that can hold over half a thousand of your guests and an elegant mid-sized banquet hall, it is perfect for lavish weddings and receptions. Placed off Narol Road, it is located 15 minutes away from Ahmedabad Junction and 20 minutes away from Apparel Park Metro Station and hence it is easily accessible for everyone, regardless of where your guests are traveling from. Those driving down here can make use of the parking space and valet services.
+The reliable team of caterers at Late Laljibhai Community Hall, Behrampura, Ahmedabad, serves mouth-watering vegetarian food which your guests will surely relish. Even though the wedding venue is already gorgeous, needless to say, the decor team does complete justice to the venue. A couple of changing rooms are also available here in case you need to add finishing touches to your appearance.
+As per the saying, matches are made in heaven but the matches made here have a likelier chance of getting a better start to their happily ever after. Book Late Laljibhai Community Hall, Ahmedabad, Gujarat, now to have a stellar wedding ceremony</p>
+                                                <ul class="list">
+                                                    <li>Lalji Parimal Hall</li>
+                                                    
+                                                    <li>1,100 Guests</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                </article>   
+                                <article id='tabs-3'>
+                                    <div class="row">
+                                        <div class="col-lg-9">
+                                            <div class="right-content">
+                                                <h4>GMDC Hall</h4>
+                                                <p> Maecenas ut pharetra felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed ut nisi quis tellus vulputate posuere. Aenean consectetur quam et quam fringilla, nec aliquam diam congue. Nulla dui arcu, aliquam sed mattis non, euismod vitae libero. </p>
+                                                <ul class="list">
+                                                    <li>GMDC Hall</li>
+                                                    
+                                                    <li>1,250 Guests</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                </article>    
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="rent-venue-application">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="heading-text">
+                        <h4>Reservation Application</h4>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contact" action="{% url 'rent_venue' %}" method="post" enctype="multipart/form-data">
+                        	{% csrf_token %}
+                          <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="name" type="text" id="name" placeholder="Your Name*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="n_email" type="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="number" type="text" id="phone-number" placeholder="Phone Number*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="company" type="text" id="company-organization" placeholder="Company / Organization*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="venue_name" type="text" id="venue-requested" placeholder="Venue Requested*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="event_type" type="text" id="type-event" placeholder="Type Of Event*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="date_request" type="text" id="date-requested-first" placeholder="Date Requested (YYYY-MM-DD)*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="date_end" type="text" id="date-requested-second" placeholder="Date Requested (YYYY-MM-DD)*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="image" type="file" id="date-requested-second" placeholder="Date Requested (YYYY-MM-DD)*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <textarea name="desc" rows="6" id="about-event-hosting" placeholder="About The Event You Are Hosting" required=""></textarea>
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-3">
+                              <fieldset >
+                                <input type="submit" style="padding:3px;" id="form-submit" value="submit" class="main-dark-button justify-content-center">
+                              </fieldset>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- *** Subscribe *** -->
+    <div class="subscribe">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4>Subscribe Our Newsletter:</h4>
+                </div>
+                <div class="col-lg-8">
+                    <form id="subscribe" action="" method="get">
+                        <div class="row">
+                          <div class="col-lg-9">
+                            <fieldset>
+                              <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-3">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-dark-button">Submit</button>
+                            </fieldset>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
